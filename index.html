@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conciencia sobre el Alcohol</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url("https://adinfa.es/wp-content/uploads/2018/10/alcoholismo-adolescentes-1080x628.jpg");
+            background-size: 100%;
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: rgba(26, 26, 46, 0.9);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #e94560;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a9a9b8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section {
+            background-color: rgba(40, 40, 60, 0.85);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            border-left: 5px solid #e94560;
+        }
+        
+        h2 {
+            color: #e94560;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #30275c;
+            padding-bottom: 0.5rem;
+        }
+        
+        .survey-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .option {
+            background-color: rgba(48, 39, 92, 0.7);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s, background-color 0.3s;
+            cursor: pointer;
+        }
+        
+        .option:hover {
+            transform: translateY(-5px);
+            background-color: rgba(48, 39, 92, 0.9);
+        }
+        
+        .option input {
+            margin-right: 10px;
+        }
+        
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            width: 100px;
+            height: 100px;
+            background-color: #30275c;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            transform-style: preserve-3d;
+        }
+        
+        .card.flipped {
+            background-color: #e94560;
+            transform: rotateY(180deg);
+        }
+        
+        .game-info {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .game-stats {
+            background-color: rgba(48, 39, 92, 0.7);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .image-item {
+            background-color: rgba(48, 39, 92, 0.7);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .image-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .image-placeholder {
+            height: 200px;
+            background-color: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #e94560;
+        }
+        
+        .image-info {
+            padding: 1rem;
+        }
+        
+        .vote-btn {
+            background-color: #e94560;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+        
+        .vote-btn:hover {
+            background-color: #c2334d;
+        }
+        
+        .vote-count {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            color: #a9a9b8;
+        }
+        
+        .submit-btn {
+            background-color: #e94560;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 1.5rem auto 0;
+        }
+        
+        .submit-btn:hover {
+            background-color: #c2334d;
+        }
+        
+        footer {
+            background-color: rgba(26, 26, 46, 0.9);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            color: #a9a9b8;
+        }
+        
+        @media (max-width: 768px) {
+            .game-board {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .card {
+                width: 80px;
+                height: 80px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .game-board {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+    <header>
+        <h1>Efectos Nocivos del Alcohol</h1>
+        <p class="subtitle">Conoce los riesgos para tu salud y participa en nuestras actividades de concientización</p>
+    </header>
+    
+    <div class="container">
+        <!-- Sección de Encuesta -->
+        <section class="section">
+            <h2>Encuesta: Ayudanos contestando la siguiente encuesta</h2>
+             <div class="game-container">
+           <iframe align="center" src="https://docs.google.com/forms/d/e/1FAIpQLSec0IqqY9bRSJjYrxQhV5f7Nswp2O7INkMXr3yxkwNacddtAg/viewform?embedded=true" width="740" height="1000" frameborder="2" marginheight="2" marginwidth="0">Cargando…</iframe>
+           </div>
+        </section>
+        
+        <!-- Sección de Juego -->
+        <section class="section" id="game">
+            <h2>Juego: Memoria de Concientización</h2>
+            <h3 align="center">Relaciona las pregunta con los efectos que las respondan</h3><br>
+            <div class="game-container">
+              
+               <iframe style="max-width:100%" src="https://wordwall.net/es/embed/bbf89841a9f24cf3b3149affc3ec5972?themeId=65&templateId=25&fontStackId=21" width="500" height="380" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+        
+        <!-- Sección de Votación de Imágenes -->
+        <section class="section" id="voting">
+            <h2>Votación: Imágenes de Concientización</h2>
+            <p>Vota por la imagen que consideres más impactante para crear conciencia sobre los efectos del alcohol.</p><br>
+            <div class="image-gallery">
+                <div class="image-item">
+                    <div class="image-placeholder"><img src=https://www.meditip.lat/wp-content/uploads/2018/08/H%C3%ADgado-sano-h%C3%ADgado-con-cirrosis.jpg width="100%" height="100%"></img></div>
+                    <div class="image-info">
+                        <h3>Hígado Saludable vs. Dañado</h3>
+                        <p>Comparación visual del efecto del alcohol en el hígado.</p>
+                        <button class="vote-btn" data-id="1">Votar</button>
+                        <div class="vote-count" id="votes-1">0 votos</div>
+                    </div>
+                </div>
+                
+                <div class="image-item">
+                    <div class="image-placeholder"><img src=https://gredos.usal.es/bitstream/handle/10366/24061/ANDIR1982-1602.jpg width="100%" height="100%"></img></div>
+                    <div class="image-info">
+                        <h3>Efecto en el Cerebro</h3>
+                        <p>Imagen que muestra cómo el alcohol afecta las conexiones cerebrales.</p>
+                        <button class="vote-btn" data-id="2">Votar</button>
+                        <div class="vote-count" id="votes-2">0 votos</div>
+                    </div>
+                </div>
+                
+                <div class="image-item">
+                     <div class="image-placeholder"><img src=https://medlineplus.gov/spanish/ency/images/ency/fullsize/18070.jpg width="100%" height="100%"></img></div>
+                    <div class="image-info">
+                        <h3>Corazón y Sistema Circulatorio</h3>
+                        <p>Impacto del alcohol en la salud cardiovascular.</p>
+                        <button class="vote-btn" data-id="3">Votar</button>
+                        <div class="vote-count" id="votes-3">0 votos</div>
+                    </div>
+                </div>
+                
+                <div class="image-item">
+                    <div class="image-placeholder"><img src=https://www.monografias.com/docs110/sindrome-del-alcoholismo-fetal/image004.gif width="100%" height="110%"></img></div><br>
+                    <div class="image-info">
+                        <h3>Efectos en el Embarazo</h3>
+                        <p>Consecuencias del consumo de alcohol durante el embarazo.</p>
+                        <button class="vote-btn" data-id="4">Votar</button>
+                        <div class="vote-count" id="votes-4">0 votos</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>© 2025 Conciencia sobre el Alcohol - Todos los derechos reservados</p>
+        <p>Esta página tiene fines educativos y de concienciación.</p>
+    </footer>
+
+    <script>
+        
+            // Botones de votación
+            const voteButtons = document.querySelectorAll('.vote-btn');
+            voteButtons.forEach(button =>  {
+                button.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    const voteCount = document.getElementById(`votes-${id}`);
+                    const currentVotes = parseInt(voteCount.textContent);
+                    voteCount.textContent = `${currentVotes + 1} votos`;
+                    this.disabled = true;
+                    this.textContent = '¡Votado!';
+                });
+            });
+            
+            
+        
+    </script>
+</body>
+</html>
